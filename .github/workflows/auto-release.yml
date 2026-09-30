@@ -24,7 +24,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NODE_VERSION: '20'
+  # npm@latest now requires Node ^22.22.2 || ^24.15.0 || >=26.0.0 (the
+  # "Upgrade npm for OIDC" step below install it). Node 20 can no longer
+  # satisfy that, so this must stay >= what npm@latest currently requires.
+  # 22 matches the CI test matrix in ci.yml, so it's already exercised there.
+  NODE_VERSION: '22'
 
 jobs:
   detect-release:

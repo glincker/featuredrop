@@ -7,7 +7,10 @@ const cwd = process.cwd();
 
 const budgets = [
   { name: "core", file: "dist/index.js", maxBytes: 5 * 1024 },
-  { name: "react", file: "dist/react.js", maxBytes: 55 * 1024 },
+  // Bumped from 55 kB: adding 7 i18n locales (ru, it, nl, tr, pl, id, vi)
+  // pushed real usage to 55.74 kB. Budget raised to 58 kB with headroom for
+  // the next couple of locales rather than re-triggering on trivial growth.
+  { name: "react", file: "dist/react.js", maxBytes: 58 * 1024 },
   { name: "vue", file: "dist/vue.js", maxBytes: 10 * 1024 },
   { name: "svelte", file: "dist/svelte.js", maxBytes: 5 * 1024 },
 ];

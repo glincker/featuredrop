@@ -73,8 +73,8 @@ under jsdom's absence in server-mode assertions.
 
 | Your situation | Use | Why |
 |---|---|---|
-| No backend at all, want it working today | `IndexedDBAdapter` (root export) | Falls back to localStorage automatically if IndexedDB is unavailable; larger quota than localStorage alone; zero setup |
-| No backend, minimal footprint is the priority | `LocalStorageAdapter` | Simplest possible persistence, smallest code path |
+| No backend, larger quota than localStorage | `IndexedDBAdapter` (`featuredrop/adapters`) | Falls back to localStorage automatically if IndexedDB is unavailable; zero setup |
+| No backend, smallest possible core bundle | `LocalStorageAdapter` (root `featuredrop`) | Ships in the < 5 kB core, no extra import needed |
 | SSR / tests, no persistence needed | `MemoryAdapter` | No `window` dependency, resets per request |
 | Already have Postgres/MySQL/SQLite | `PostgresAdapter` / `MySQLAdapter` / `SQLiteAdapter` | Direct query-function adapters, no ORM required |
 | Already on Supabase | `SupabaseAdapter` | Uses your existing client + realtime channel |

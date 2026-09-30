@@ -23,16 +23,16 @@
     "react-syntax-highlighter": "^16.1.1"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.8",
-    "@tailwindcss/typography": "^0.5.16",
+    "@netlify/plugin-nextjs": "^5.16.0",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^22.0.0",
     "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/react-dom": "^19.3.0",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^3.4.17",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.7.0"
   }
 }

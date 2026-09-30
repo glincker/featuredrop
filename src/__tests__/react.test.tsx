@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
@@ -14,6 +14,18 @@ import { createFlagBridge } from "../flags";
 import type { FeatureManifest } from "../types";
 
 const NOW = new Date("2026-02-25T12:00:00Z");
+
+// Fixture dates below are anchored to NOW. Freeze only the Date/clock (not
+// setTimeout/setInterval) so userEvent's internal delays keep working while
+// `new Date()`/`Date.now()` inside the provider stay pinned to the fixture window.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(NOW);
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 const TEST_MANIFEST: FeatureManifest = [
   {
@@ -43,6 +55,32 @@ const TEST_MANIFEST: FeatureManifest = [
 
 function createTestStorage() {
   return new MemoryAdapter();
+}
+
+// Two tests below exercise real elapsed time (session cooldown / min-time-between
+// gates), so they opt out of the frozen NOW clock and need a manifest that stays
+// fresh relative to whenever the test actually runs, instead of TEST_MANIFEST's
+// fixed dates.
+function relativeManifest(now: Date): FeatureManifest {
+  const day = 86_400_000;
+  return [
+    {
+      id: "journal",
+      label: "Decision Journal",
+      releasedAt: new Date(now.getTime() - 5 * day).toISOString(),
+      showNewUntil: new Date(now.getTime() + 25 * day).toISOString(),
+      sidebarKey: "/journal",
+      category: "ai",
+    },
+    {
+      id: "analytics",
+      label: "Analytics Dashboard",
+      releasedAt: new Date(now.getTime() - 3 * day).toISOString(),
+      showNewUntil: new Date(now.getTime() + 27 * day).toISOString(),
+      sidebarKey: "/analytics",
+      category: "core",
+    },
+  ];
 }
 
 // ── Helper component to expose hook values ───────────────────────────────────
@@ -419,10 +457,11 @@ describe("FeatureDropProvider", () => {
   });
 
   it("holds announcements during session cooldown, then releases them", async () => {
+    vi.useRealTimers();
     const storage = createTestStorage();
     render(
       <FeatureDropProvider
-        manifest={TEST_MANIFEST}
+        manifest={relativeManifest(new Date())}
         storage={storage}
         throttle={{ sessionCooldown: 40 }}
       >
@@ -437,10 +476,11 @@ describe("FeatureDropProvider", () => {
   });
 
   it("tracks runtime throttle gates for toast, modal, tour, and spotlight limits", async () => {
+    vi.useRealTimers();
     const storage = createTestStorage();
     render(
       <FeatureDropProvider
-        manifest={TEST_MANIFEST}
+        manifest={relativeManifest(new Date())}
         storage={storage}
         throttle={{
           maxToastsPerSession: 1,

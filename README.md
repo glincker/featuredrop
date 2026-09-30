@@ -26,7 +26,8 @@
   <a href="https://featuredrop.dev/docs/components/gallery">Components</a> &bull;
   <a href="https://featuredrop.dev/playground">Playground</a> &bull;
   <a href="https://featuredrop.dev/docs/api">API Reference</a> &bull;
-  <a href="#migration-from-beamer--pendo">Migration Guide</a>
+  <a href="#migration-from-beamer--pendo">Migration Guide</a> &bull;
+  <a href="https://github.com/GLINCKER/featuredrop/discussions">Discussions</a>
 </p>
 
 <p align="center">
@@ -37,6 +38,13 @@
 ---
 
 ## Why FeatureDrop?
+
+Feature discovery, changelog widgets, product tours, onboarding checklists,
+and in-app feedback — every SaaS needs some subset of these, and every SaaS
+ends up either paying a vendor monthly or hand-rolling a "New" badge that
+never expires. FeatureDrop is the self-hosted middle path: a typed manifest
+you own, components that run inside your own tree, and zero required
+backend.
 
 Every SaaS ships features. Users miss them. The usual options are bad:
 
@@ -451,26 +459,26 @@ npx featuredrop migrate --from beamer --input beamer-export.json --out features.
 
 ## Full Comparison
 
-| | FeatureDrop | Beamer | Headway | AnnounceKit | Pendo |
-|---|:---:|:---:|:---:|:---:|:---:|
-| **Price** | **Free** | $59–399/mo | $49–249/mo | $79–299/mo | $7k+/yr |
-| Auto-expiring badges | ✅ | — | — | — | — |
-| Changelog widget | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Product tours | ✅ | — | — | — | ✅ |
-| Onboarding checklists | ✅ | — | — | — | ✅ |
-| Spotlight / beacon | ✅ | — | — | — | — |
-| Hotspot tooltips | ✅ | — | — | — | — |
-| Announcement modal | ✅ | — | — | — | — |
-| Toast notifications | ✅ | — | — | — | — |
-| Feedback & surveys | ✅ | — | — | — | ✅ |
-| Feature request voting | ✅ | — | — | — | — |
-| Tab title notification | ✅ | — | — | — | — |
-| Zero runtime deps (core) | ✅ | — | — | — | — |
-| Framework agnostic | ✅ | — | — | — | — |
-| Headless mode | ✅ | — | — | — | — |
-| Analytics callbacks | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Self-hosted | ✅ | — | — | — | — |
-| Open source | ✅ | — | — | — | — |
+| | FeatureDrop | Beamer | Headway | AnnounceKit | Pendo | Frill | Canny | LaunchNotes |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Price** | **Free** | $59–399/mo | $49–249/mo | $79–299/mo | $7k+/yr | $25–200/mo | $79–800/mo | $99–499/mo |
+| Auto-expiring badges | ✅ | — | — | — | — | — | — | — |
+| Changelog widget | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Product tours | ✅ | — | — | — | ✅ | — | — | — |
+| Onboarding checklists | ✅ | — | — | — | ✅ | — | — | — |
+| Spotlight / beacon | ✅ | — | — | — | — | — | — | — |
+| Hotspot tooltips | ✅ | — | — | — | — | — | — | — |
+| Announcement modal | ✅ | — | — | — | — | — | — | — |
+| Toast notifications | ✅ | — | — | — | — | — | — | — |
+| Feedback & surveys | ✅ | — | — | — | ✅ | ✅ | ✅ | — |
+| Feature request voting | ✅ | — | — | — | — | ✅ | ✅ | — |
+| Tab title notification | ✅ | — | — | — | — | — | — | — |
+| Zero runtime deps (core) | ✅ | — | — | — | — | — | — | — |
+| Framework agnostic | ✅ | — | — | — | — | — | — | — |
+| Headless mode | ✅ | — | — | — | — | — | — | — |
+| Analytics callbacks | ✅ | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
+| Self-hosted | ✅ | — | — | — | — | — | — | — |
+| Open source | ✅ | — | — | — | — | — | — | — |
 
 ---
 
@@ -487,6 +495,42 @@ npx featuredrop migrate --from beamer --input beamer-export.json --out features.
 | [Architecture](https://featuredrop.dev/docs/concepts/architecture) | Three-check algorithm, cross-device sync |
 | [Recipes](https://featuredrop.dev/docs/recipes) | Copy-paste integration patterns |
 | [Frameworks](https://featuredrop.dev/docs/frameworks/vue) | Vue, Svelte, Solid, Angular, Preact, Web Components |
+| [Benchmarks](docs/BENCHMARKS.md) | Real bundle sizes, compatibility matrix, adapter guide |
+
+---
+
+## Benchmarks
+
+Real gzip sizes, the full 12-target framework compatibility matrix, and a
+storage-adapter selection guide — generated from this repo, not hand-typed.
+
+**Headline numbers:** 3.01 kB core (gzip) · 12 framework targets, all with
+automated test coverage · 10 storage adapters, from zero-config
+`IndexedDBAdapter` to Postgres/MySQL/Redis/Supabase.
+
+[Full benchmarks & compatibility matrix →](docs/BENCHMARKS.md)
+
+---
+
+## Community
+
+Have a question, an idea, or want to show off what you built with
+FeatureDrop? [GitHub Discussions](https://github.com/GLINCKER/featuredrop/discussions)
+is the place — **Q&A** for help, **Ideas** for feature requests, **Show and
+tell** for what you shipped, **Announcements** for release notes.
+[Issues](https://github.com/GLINCKER/featuredrop/issues) stay for bugs and
+confirmed feature work.
+
+---
+
+## From the makers of
+
+FeatureDrop is built and maintained by [GLINR STUDIOS](https://glincker.com),
+alongside:
+
+- [**thesvg**](https://github.com/glincker/thesvg) — 7,400+ brand SVG icons for developers, tree-shakeable and typed
+- [**levelrail**](https://github.com/glincker/levelrail) — self-hosted deployment platform: push to git, get a running app with TLS, logs, metrics, and rollback
+- [**AskVerdict.ai**](https://askverdict.ai) — where FeatureDrop was originally built and battle-tested
 
 ---
 

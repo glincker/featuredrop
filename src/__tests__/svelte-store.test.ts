@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { MemoryAdapter } from "../adapters/memory";
 import { createFeatureDropStore, createNewCountStore, createNewFeatureStore } from "../svelte";
 import type { FeatureManifest } from "../types";
@@ -12,6 +12,16 @@ const manifest: FeatureManifest = [
     sidebarKey: "/journal",
   },
 ];
+
+// Fixture dates above are anchored to this instant.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-02-25T12:00:00Z"));
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe("svelte store bindings", () => {
   it("exposes new count and feature state", () => {

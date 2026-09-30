@@ -18,7 +18,7 @@ jobs:
 
       - uses: wagoid/commitlint-github-action@v6
         with:
-          configFile: commitlint.config.js
+          configFile: commitlint.config.mjs
 
   test:
     name: Test (Node ${{ matrix.node-version }})

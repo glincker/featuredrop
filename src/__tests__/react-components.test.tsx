@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FeatureDropProvider } from "../react/provider";
@@ -11,6 +11,18 @@ import { useTabNotification } from "../react/hooks/use-tab-notification";
 import { MemoryAdapter } from "../adapters/memory";
 import type { FeatureManifest, AnalyticsCallbacks, FeatureDropAnimationPreset } from "../types";
 import type { ThrottleOptions } from "../throttle";
+
+// Fixture dates below are anchored to this instant. Freeze only the Date/clock
+// (not setTimeout/setInterval) so userEvent's internal delays keep working while
+// `new Date()`/`Date.now()` inside the provider stay pinned to the fixture window.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-02-25T12:00:00Z"));
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 // ── Test Data ────────────────────────────────────────────────────────────────
 

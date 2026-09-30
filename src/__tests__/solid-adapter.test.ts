@@ -1,8 +1,18 @@
 import { createRoot } from "solid-js";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { MemoryAdapter } from "../adapters";
 import { createManifest } from "../helpers";
 import { createFeatureDropStore, useFeatureDrop } from "../solid";
+
+// Fixture dates below are anchored to this instant.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-02-25T12:00:00Z"));
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe("solid adapter", () => {
   it("creates a store with signal accessors and adapter actions", () => {

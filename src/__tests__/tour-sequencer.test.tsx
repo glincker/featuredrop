@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { FeatureManifest } from "../types";
@@ -7,6 +7,16 @@ import { FeatureDropProvider } from "../react/provider";
 import { Tour } from "../react/components/tour";
 import { useTourSequencer } from "../react/hooks/use-tour-sequencer";
 import { useFeatureDrop } from "../react/hooks/use-feature-drop";
+
+// Fixture dates below are anchored to this instant.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-02-25T12:00:00Z"));
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 const MANIFEST: FeatureManifest = [
   {

@@ -2,6 +2,8 @@
 
 We welcome contributions! Whether it's a bug fix, new adapter, framework binding, or documentation improvement.
 
+**Not sure where to start, or just want to chat?** Use [GitHub Discussions](https://github.com/GLINCKER/featuredrop/discussions) — **Q&A** for help, **Ideas** for feature requests before you write code, **Show and tell** for what you built. Save [Issues](https://github.com/GLINCKER/featuredrop/issues) for bugs and work that's already agreed on.
+
 ## Development Setup
 
 ```bash

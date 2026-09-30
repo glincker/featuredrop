@@ -11,13 +11,13 @@ pnpm test                                # full suite, see coverage column below
 
 ## Bundle size (gzip)
 
-Every entry point, sorted smallest to largest. Generated from `featuredrop@3.0.3` on 2026-09-29.
+Every entry point, sorted smallest to largest. Generated from `featuredrop@3.0.3` on 2026-09-30, after the i18n expansion to 17 locales.
 
 | Entry point | Import | Gzip size |
 |---|---|---:|
 | Core | `featuredrop` | 3.01 kB |
-| React + hooks | `featuredrop/react` | 53.32 kB |
-| Preact | `featuredrop/preact` | 53.31 kB |
+| React + hooks | `featuredrop/react` | 55.74 kB |
+| Preact | `featuredrop/preact` | 55.74 kB |
 | Vue | `featuredrop/vue` | 7.34 kB |
 | Svelte | `featuredrop/svelte` | 2.58 kB |
 | Solid | `featuredrop/solid` | 2.93 kB |
@@ -33,15 +33,16 @@ Every entry point, sorted smallest to largest. Generated from `featuredrop@3.0.3
 | CI helpers | `featuredrop/ci` | 3.14 kB |
 | Bridges (Slack/Discord/etc.) | `featuredrop/bridges` | 5.05 kB |
 | CMS adapters | `featuredrop/cms` | 6.87 kB |
-| Testing utilities | `featuredrop/testing` | 12.96 kB |
+| Testing utilities | `featuredrop/testing` | 15.39 kB |
 
 The React/Preact bundles are larger because they ship the full component
-library (17 components). If you only need data + actions, import
-`featuredrop/react/hooks` instead (3.63 kB) and bring your own UI.
+library (17 components) plus the full i18n dictionary. If you only need data
++ actions, import `featuredrop/react/hooks` instead (3.63 kB) and bring your
+own UI.
 
 CI enforces hard budgets on the four highest-traffic paths via
 `pnpm size-check` (`scripts/check-bundle-budgets.mjs`): core ≤ 5 kB, react ≤
-55 kB, vue ≤ 10 kB, svelte ≤ 5 kB. A PR that busts a budget fails CI.
+58 kB, vue ≤ 10 kB, svelte ≤ 5 kB. A PR that busts a budget fails CI.
 
 ## Framework compatibility matrix
 
@@ -56,7 +57,7 @@ file compiles.
 | Remix | `featuredrop/remix` | ✅ | `framework-integrations.test.ts` |
 | Astro | `featuredrop/astro` | ✅ | `framework-integrations.test.ts` |
 | Nuxt | `featuredrop/nuxt` | ✅ | `framework-integrations.test.ts` |
-| Vue 3 | `featuredrop/vue` | ✅ | Dedicated entry-point test landing in a follow-up PR — see the repo's open PRs |
+| Vue 3 | `featuredrop/vue` | ✅ | `vue.test.ts` |
 | Svelte 5 | `featuredrop/svelte` | ✅ | `svelte-store.test.ts` |
 | SolidJS | `featuredrop/solid` | ✅ | `solid-adapter.test.ts` |
 | Preact | `featuredrop/preact` | ✅ | `preact-adapter.test.ts` |

@@ -16,7 +16,7 @@
     "featuredrop": "link:../..",
     "lucide-react": "^0.542.0",
     "next": "^14.2.28",
-    "nextra": "^2.13.4",
+    "nextra": "^4.6.1",
     "nextra-theme-docs": "^2.13.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
